@@ -66,7 +66,7 @@ export function CumulativeGateTestView() {
             userAnswer: answers[i] || "No answer provided",
             nuanceBreakdownKorean: data.nuanceBreakdownKorean,
             betterAlternatives: data.betterAlternatives,
-            misconceptionType: "어순 오류"
+            misconceptionType: data.misconceptionType
           });
         }
       } catch (e) {

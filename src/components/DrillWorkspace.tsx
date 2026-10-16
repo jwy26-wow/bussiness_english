@@ -5,12 +5,12 @@ import { Send, Loader2, CheckCircle2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { GradeResponseResponse } from '@/types/gemini';
 
+import { useAppStore } from '@/store/useAppStore';
+
 export interface DrillWorkspaceProps {
   question: string;
   onSubmit: (answer: string) => Promise<GradeResponseResponse>;
 }
-
-import { useAppStore } from '@/store/useAppStore';
 
 export function DrillWorkspace({ question, onSubmit }: DrillWorkspaceProps) {
   const { stepId, subLessonId, addErrorRecord } = useAppStore();
@@ -36,7 +36,7 @@ export function DrillWorkspace({ question, onSubmit }: DrillWorkspaceProps) {
           userAnswer: answer,
           nuanceBreakdownKorean: res.nuanceBreakdownKorean,
           betterAlternatives: res.betterAlternatives,
-          misconceptionType: "단어 선택 오류"
+          misconceptionType: res.misconceptionType
         });
       }
     } catch (error) {

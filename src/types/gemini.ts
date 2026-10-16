@@ -43,6 +43,7 @@ export const GradeResponseResponseSchema = z.object({
   score: z.number().min(0).max(100),
   nuanceBreakdownKorean: z.string(),
   betterAlternatives: z.array(z.string()),
+  misconceptionType: z.string(),
 });
 
 export type GradeResponseResponse = z.infer<typeof GradeResponseResponseSchema>;

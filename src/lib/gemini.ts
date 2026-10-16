@@ -18,7 +18,8 @@ const MOCK_GENERATE_CONTENT: GenerateContentResponse = {
 const MOCK_GRADE_RESPONSE: GradeResponseResponse = {
   score: 85,
   nuanceBreakdownKorean: "전반적으로 의미 전달은 훌륭합니다. 하지만 격식을 차려야 하는 상황이므로 조금 더 부드러운 뉘앙스의 단어를 선택하는 것이 좋습니다.",
-  betterAlternatives: ["Could you please clarify this point?", "I would appreciate some more details.", "Could we elaborate on this?"]
+  betterAlternatives: ["Could you please clarify this point?", "I would appreciate some more details.", "Could we elaborate on this?"],
+  misconceptionType: "뉘앙스/정중함 부족"
 };
 
 const MOCK_GENERATE_EXAM: GenerateExamResponse = {
@@ -114,11 +115,13 @@ export class GeminiService {
       2. The suggested better alternatives MUST be in English.
       3. Provide a score out of 100 based on clarity, professional tone, and grammar.
       4. Provide 2-3 better alternative expressions.
-      5. Return the result STRICTLY as a valid JSON object matching this structure:
+      5. Categorize the user's primary mistake into a short, concise label in Korean (e.g., "어순 오류", "단어 선택 오류", "문법 오류", "뉘앙스 부족"). If the score is 100, label it "완벽함".
+      6. Return the result STRICTLY as a valid JSON object matching this structure:
       {
         "score": number,
         "nuanceBreakdownKorean": "string (Korean)",
-        "betterAlternatives": ["string", "string"]
+        "betterAlternatives": ["string", "string"],
+        "misconceptionType": "string (Korean)"
       }
     `;
 

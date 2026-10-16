@@ -66,7 +66,7 @@ export function StepFinalExamView() {
             userAnswer: answers[i] || "No answer provided",
             nuanceBreakdownKorean: data.nuanceBreakdownKorean,
             betterAlternatives: data.betterAlternatives,
-            misconceptionType: "뉘앙스/정중함 부족"
+            misconceptionType: data.misconceptionType
           });
         }
       } catch (e) {

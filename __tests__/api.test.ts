@@ -35,6 +35,7 @@ describe("GeminiService (Mock Mode)", () => {
     expect(res.score).toBe(85); // Mock has 85
     expect(typeof res.nuanceBreakdownKorean).toBe("string");
     expect(res.betterAlternatives).toHaveLength(3); // Mock has 3
+    expect(typeof res.misconceptionType).toBe("string");
   });
 
   it("should generate exam successfully in mock mode", async () => {
