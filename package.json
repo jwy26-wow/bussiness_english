@@ -13,7 +13,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-
   "bugs": {
     "url": "https://github.com/jwy26-wow/bussiness_english/issues"
   },
@@ -38,6 +37,7 @@
     "next": "^16.4.2",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
-    "zod": "^4.6.7"
+    "zod": "^4.6.7",
+    "zustand": "^5.0.15"
   }
 }

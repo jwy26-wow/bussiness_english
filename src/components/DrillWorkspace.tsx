@@ -10,7 +10,10 @@ export interface DrillWorkspaceProps {
   onSubmit: (answer: string) => Promise<GradeResponseResponse>;
 }
 
+import { useAppStore } from '@/store/useAppStore';
+
 export function DrillWorkspace({ question, onSubmit }: DrillWorkspaceProps) {
+  const { stepId, subLessonId, addErrorRecord } = useAppStore();
   const [answer, setAnswer] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [feedback, setFeedback] = useState<GradeResponseResponse | null>(null);
@@ -24,6 +27,18 @@ export function DrillWorkspace({ question, onSubmit }: DrillWorkspaceProps) {
     try {
       const res = await onSubmit(answer);
       setFeedback(res);
+
+      if (res.score < 100) {
+        addErrorRecord({
+          stepId,
+          subLessonId,
+          question,
+          userAnswer: answer,
+          nuanceBreakdownKorean: res.nuanceBreakdownKorean,
+          betterAlternatives: res.betterAlternatives,
+          misconceptionType: "단어 선택 오류"
+        });
+      }
     } catch (error) {
       console.error(error);
     } finally {
